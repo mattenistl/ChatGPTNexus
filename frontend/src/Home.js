@@ -1,63 +1,27 @@
-import React from "react";
-import { AppBar, Toolbar, Typography, Button, Container, Grid } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
 const Home = () => {
+  const [backendMessage, setBackendMessage] = useState("");
+
+  useEffect(() => {
+    // Fetch data from the backend
+    fetch("http://127.0.0.1:5000/test-endpoint")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Backend Response:", data);
+        setBackendMessage(data.message);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setBackendMessage("Failed to fetch data from the backend.");
+      });
+  }, []);
+
   return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" style={{ flexGrow: 1 }}>
-            FounderSmarter
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-      <Container style={{ marginTop: "20px" }}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Typography variant="h3" align="center">
-              Empowering Founders to Build AI Startups
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              align="center"
-              style={{ marginTop: "10px" }}
-            >
-              Personalized assessments, AI tools, and a supportive community
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h5">Founder Readiness Assessment</Typography>
-            <Typography>
-              Evaluate your entrepreneurial readiness with AI-powered insights.
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h5">AI-Driven Idea Validation</Typography>
-            <Typography>
-              Validate your startup idea with cutting-edge AI tools.
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h5">Supportive Community</Typography>
-            <Typography>
-              Connect with like-minded founders and mentors.
-            </Typography>
-          </Grid>
-        </Grid>
-      </Container>
-      <footer
-        style={{
-          marginTop: "40px",
-          textAlign: "center",
-          padding: "20px",
-          background: "#f5f5f5",
-        }}
-      >
-        <Typography variant="subtitle2">
-          &copy; 2024 FounderSmarter. All rights reserved.
-        </Typography>
-      </footer>
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Welcome to FounderSmarter</h1>
+      <h2>Backend Message:</h2>
+      <p>{backendMessage}</p>
     </div>
   );
 };
