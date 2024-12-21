@@ -1,2 +1,21 @@
-__pycache__/
+# Node.js
+node_modules/
+
+# Python
 venv/
+__pycache__/
+
+# Build Files
+build/
+dist/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDE Settings
+.vscode/
+.idea/
