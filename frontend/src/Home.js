@@ -5,7 +5,8 @@ const Home = () => {
 
   useEffect(() => {
     // Fetch data from the backend
-    fetch("http://127.0.0.1:5000/test-endpoint")
+    fetch(import.meta.env.VITE_API_URL)
+
       .then((response) => response.json())
       .then((data) => {
         console.log("Backend Response:", data);
