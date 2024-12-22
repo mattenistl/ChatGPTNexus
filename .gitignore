@@ -1,3 +1,8 @@
+# Ignore generated and compressed files
+project_minimal.zip
+project_structure.txt
+project_structure.zip
+
 # Node.js
 node_modules/
 
