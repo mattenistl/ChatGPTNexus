@@ -1,0 +1,12 @@
+name: Deploy Application
+specs:
+  runs-on: ubuntu-latest
+  steps: 
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Install node_modules
+      run: npm install
+    - name: Run build
+      run: npm run build
+    - name: Run deployment to Netlify
+      run: curl -H "Authorization: token ${$ secrets.NETLIFY_AUTH_TOKEN }" -M PUSH_URL
